@@ -1,5 +1,4 @@
 import Vue  from 'vue'
-import Home from 'views/Home'
 import router from './router'  //直接导入路由配置 
 
 // 最后创建vue实例并挂载
