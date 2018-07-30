@@ -1,6 +1,7 @@
 const path=require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HTMLPlugin = require('html-webpack-plugin')
+const TransformModulesPlugin = require('webpack-transform-modules-plugin')
 const webpack = require('webpack')
 
 
@@ -17,6 +18,7 @@ const config = {
     resolve: {
       alias: {
         'vue$': 'vue/dist/vue.esm.js',
+        'cube-ui': 'cube-ui/lib',
         components: path.join(__dirname, 'src/components'),
         views: path.join(__dirname, 'src/views')
       },
@@ -64,6 +66,14 @@ const config = {
                 ]
             },
             {
+              test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+              loader: 'url-loader',
+              options: {
+                limit: 10000,
+                name: 'fonts/[name].[hash:7].[ext]'
+              }
+            },
+            {
                 test:/\.styl/,
                 use:[
                     'style-loader',
@@ -83,6 +93,7 @@ const config = {
            }
         }),
         new VueLoaderPlugin(),
+        new TransformModulesPlugin(),
         new HTMLPlugin({
           template: path.join(__dirname, 'index.html'), // 模板文件
           inject: 'body' // js的script注入到body底部

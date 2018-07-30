@@ -11,6 +11,15 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "transformModules": {
+    "cube-ui": {
+      "transform": "cube-ui/lib/${member}",
+      "kebabCase": true,
+      "style": {
+        "ignore": ["create-api", "better-scroll"]
+      }
+    }
+  },
   "devDependencies": {
     "autoprefixer": "^8.6.5",
     "babel-core": "^6.26.3",
